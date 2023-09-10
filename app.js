@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="dropdown-content">
             <a href="#" data-color="default">Default</a>
             <a href="#" data-color="#FFB6B6">Red</a>
-            <a href="#" data-color="#B2D8FF">Blue</a>
+             <a href="#" data-color="#76db91">Green</a>
         </div>
     </div>
     
