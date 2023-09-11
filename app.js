@@ -1,3 +1,65 @@
+import { initializeApp } from 'firebase/app';
+import { getAnalytics } from "firebase/analytics";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+const firebaseConfig = {
+    apiKey: "AIzaSyAKWQDHGl-Xr5uO-tTltK-cpRmbDtk0kfo",
+    authDomain: "to-do-list-fee10.firebaseapp.com",
+    databaseURL: "https://to-do-list-fee10-default-rtdb.firebaseio.com",
+    projectId: "to-do-list-fee10",
+    storageBucket: "to-do-list-fee10.appspot.com",
+    messagingSenderId: "376116052987",
+    appId: "1:376116052987:web:d5ee2b34aad74f660f015e",
+    measurementId: "G-MHEY9095S3"
+  };
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+
+  function signUpWithEmail(email, password) {
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+        // Successfully registered
+        const user = userCredential.user;
+        console.log("User Registered:", user);
+    })
+    .catch((error) => {
+        console.error("Error registering user:", error.message);
+        alert(error.message);
+    });
+}
+
+function loginWithEmail(email, password) {
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+        // Successfully logged in
+        const user = userCredential.user;
+        console.log("Logged in as:", user.email);
+        // Redirect to profile or another page if you want
+        window.location.href = 'profile.html';
+    })
+    .catch((error) => {
+        console.error("Error logging in:", error.message);
+        alert(error.message);
+    });
+}
+
+const signupForm = document.querySelector('form');
+signupForm.addEventListener('submit', function(e) {
+e.preventDefault(); // Prevent form from submitting the default way
+const email = document.getElementById('signupEmail').value;
+const password = document.getElementById('signupPassword').value;
+signUpWithEmail(email, password);
+});
+
+const loginForm = document.querySelectorAll('form')[1];
+loginForm.addEventListener('submit', function(e) {
+e.preventDefault();
+const emailOrUsername = document.getElementById('loginUsername').value;
+const password = document.getElementById('loginPassword').value;
+loginWithEmail(emailOrUsername, password); // Assuming the username is not implemented for now
+});
+
 document.addEventListener('DOMContentLoaded', function() {
     const taskList = document.getElementById('taskList');
     const taskInput = document.getElementById('taskInput');
@@ -32,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="dropdown-content">
             <a href="#" data-color="default">Default</a>
             <a href="#" data-color="#FFB6B6">Red</a>
-             <a href="#" data-color="#76db91">Green</a>
+            <a href="#" data-color="#76db91">Green</a>
         </div>
     </div>
     
@@ -171,3 +233,4 @@ document.addEventListener('DOMContentLoaded', function() {
     
     loadTasks();
 });
+
