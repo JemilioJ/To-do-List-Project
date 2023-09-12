@@ -1,6 +1,3 @@
-
-const analytics = firebase.analytics();
-
 const taskList = document.getElementById('taskList');
 const taskInput = document.getElementById('taskInput');
 const addTaskButton = document.getElementById('addTaskButton');
