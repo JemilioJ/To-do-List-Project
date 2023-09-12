@@ -63,11 +63,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<!-- Firebase core and initialization -->
 <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-analytics.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js"></script>
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-analytics.js";
@@ -82,12 +79,14 @@
     appId: "1:376116052987:web:d5ee2b34aad74f660f015e",
     measurementId: "G-MHEY9095S3"
   };
-
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
 </script>
+<!-- Firebase core and initialization -->
 
+<script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js"></script>
 <!-- Your custom script -->
 <script src="app.js"></script>
 
