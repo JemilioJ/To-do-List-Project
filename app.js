@@ -1,15 +1,4 @@
-const firebaseConfig = {
-    apiKey: "AIzaSyAKWQDHGl-Xr5uO-tTltK-cpRmbDtk0kfo",
-    authDomain: "to-do-list-fee10.firebaseapp.com",
-    databaseURL: "https://to-do-list-fee10-default-rtdb.firebaseio.com",
-    projectId: "to-do-list-fee10",
-    storageBucket: "to-do-list-fee10.appspot.com",
-    messagingSenderId: "376116052987",
-    appId: "1:376116052987:web:d5ee2b34aad74f660f015e",
-    measurementId: "G-MHEY9095S3"
-};
 
-firebase.initializeApp(firebaseConfig);
 const analytics = firebase.analytics();
 
 const taskList = document.getElementById('taskList');
