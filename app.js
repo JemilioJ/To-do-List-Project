@@ -1,11 +1,3 @@
-import { initializeApp } from 'firebase/app';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import { getAnalytics } from 'firebase/analytics';
-
-const taskList = document.getElementById('taskList');
-const taskInput = document.getElementById('taskInput');
-const addTaskButton = document.getElementById('addTaskButton');
-
 const firebaseConfig = {
     apiKey: "AIzaSyAKWQDHGl-Xr5uO-tTltK-cpRmbDtk0kfo",
     authDomain: "to-do-list-fee10.firebaseapp.com",
@@ -17,33 +9,40 @@ const firebaseConfig = {
     measurementId: "G-MHEY9095S3"
 };
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const analytics = getAnalytics(app);
+firebase.initializeApp(firebaseConfig);
+const analytics = firebase.analytics();
+
+const taskList = document.getElementById('taskList');
+const taskInput = document.getElementById('taskInput');
+const addTaskButton = document.getElementById('addTaskButton');
 
 function signUpWithEmail(email, password) {
-    createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-        const user = userCredential.user;
-        console.log("User Registered:", user);
-    })
-    .catch((error) => {
-        console.error("Error registering user:", error.message);
-        alert(error.message);
-    });
+    const auth = firebase.auth();
+    auth.createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+            // Successfully registered
+            const user = userCredential.user;
+            console.log("User Registered:", user);
+        })
+        .catch((error) => {
+            console.error("Error registering user:", error.message);
+            alert(error.message);
+        });
 }
 
 function loginWithEmail(email, password) {
-    signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-        const user = userCredential.user;
-        console.log("Logged in as:", user.email);
-        window.location.href = 'profile.html';
-    })
-    .catch((error) => {
-        console.error("Error logging in:", error.message);
-        alert(error.message);
-    });
+    const auth = firebase.auth();
+    auth.signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+            // Successfully logged in
+            const user = userCredential.user;
+            console.log("Logged in as:", user.email);
+            window.location.href = 'profile.html';
+        })
+        .catch((error) => {
+            console.error("Error logging in:", error.message);
+            alert(error.message);
+        });
 }
 
 const signupForm = document.querySelector('form');
@@ -60,7 +59,7 @@ loginForm.addEventListener('submit', function(e) {
     const emailOrUsername = document.getElementById('loginUsername').value;
     const password = document.getElementById('loginPassword').value;
     loginWithEmail(emailOrUsername, password);
-}); 
+});
 
     taskInput.addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
