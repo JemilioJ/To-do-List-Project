@@ -1,6 +1,20 @@
 const taskList = document.getElementById('taskList');
 const taskInput = document.getElementById('taskInput');
 const addTaskButton = document.getElementById('addTaskButton');
+ var firebaseConfig = {
+    apiKey: "AIzaSyAKWQDHGl-Xr5uO-tTltK-cpRmbDtk0kfo",
+    authDomain: "to-do-list-fee10.firebaseapp.com",
+    databaseURL: "https://to-do-list-fee10-default-rtdb.firebaseio.com",
+    projectId: "to-do-list-fee10",
+    storageBucket: "to-do-list-fee10.appspot.com",
+    messagingSenderId: "376116052987",
+    appId: "1:376116052987:web:d5ee2b34aad74f660f015e",
+    measurementId: "G-MHEY9095S3"
+  };
+  
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
 
 function signUpWithEmail(email, password) {
     const auth = firebase.auth();
@@ -47,19 +61,24 @@ loginForm.addEventListener('submit', function(e) {
     loginWithEmail(emailOrUsername, password);
 });
 
-function onSignIn(googleUser) {
-  // Get the Google ID token and the auth instance
-  var id_token = googleUser.getAuthResponse().id_token;
-  var auth = firebase.auth();
+firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+        // User is signed in
+        const uid = user.uid;
+        // Redirect to profile.html or update UI elements
+        window.location.href = 'profile.html';
+    } else {
+        // User is signed out
+        // Update UI or remain on the current page
+         window.location.href = 'login.html'
+    }
+});
 
-  // Authenticate with Firebase using the Google ID token
-  var credential = firebase.auth.GoogleAuthProvider.credential(id_token);
-  auth.signInWithCredential(credential).catch(function(error) {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    console.log("Error logging in with Google: ", errorCode, errorMessage);
-  });
+const user = firebase.auth().currentUser;
+if (user !== null) {
+    const displayName = user.displayName;
+    const email = user.email;
+    // ... and other fields
 }
 
 function signOut() {
