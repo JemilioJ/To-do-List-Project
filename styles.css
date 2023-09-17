@@ -49,3 +49,7 @@
 .show {
     display: block;
 }
+#googleBtn > div {
+    width: 100% !important;
+    height: 50px !important;
+}
