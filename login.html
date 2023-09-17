@@ -69,11 +69,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-analytics.js"></script>
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-analytics.js";
+<script>
   // Your web app's Firebase configuration
-  const firebaseConfig = {
+  var firebaseConfig = {
     apiKey: "AIzaSyAKWQDHGl-Xr5uO-tTltK-cpRmbDtk0kfo",
     authDomain: "to-do-list-fee10.firebaseapp.com",
     databaseURL: "https://to-do-list-fee10-default-rtdb.firebaseio.com",
@@ -83,19 +81,15 @@
     appId: "1:376116052987:web:d5ee2b34aad74f660f015e",
     measurementId: "G-MHEY9095S3"
   };
+  
   // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
 </script>
 <!-- Firebase core and initialization -->
-
 <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js"></script>
-<!-- Your custom script -->
+
 <script src="app.js"></script>
-
-
-
 </body>
-
 </html>
