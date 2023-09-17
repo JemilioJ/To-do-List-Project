@@ -8,9 +8,8 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="icon" href="https://raw.githubusercontent.com/JemilioJ/To-do-List-Project/main/favicon.ico" type="image/x-icon">
     <link href="styles.css" rel="stylesheet">
-<script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-analytics.js"></script>
-
 <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js"></script>
 </head>
@@ -27,7 +26,7 @@
     <div class="container mt-5">
         <div class="row">
             <!-- Sign Up Form -->
-            <div class="col-md-6">
+            <div class="col-md-6" id="not-logged-in">
                 <h3>Sign Up</h3>
                 <form>
                     <div class="form-group">
@@ -51,8 +50,8 @@
                 <h3>Login</h3>
                 <form>
                     <div class="form-group">
-                        <label for="loginUsername">Username or Email</label>
-                        <input type="text" class="form-control" id="loginUsername" placeholder="Enter username or email">
+                        <label for="loginUsername">Email</label>
+                        <input type="text" class="form-control" id="loginUsername" placeholder="Enter email">
                     </div>
                     <div class="form-group">
                         <label for="loginPassword">Password</label>
@@ -61,6 +60,7 @@
                     <button type="submit" class="btn btn-primary">Login</button>
                 </form>
             </div>
+            
         </div>
     </div>
 
