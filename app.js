@@ -47,6 +47,30 @@ loginForm.addEventListener('submit', function(e) {
     loginWithEmail(emailOrUsername, password);
 });
 
+function onSignIn(googleUser) {
+  // Get the Google ID token and the auth instance
+  var id_token = googleUser.getAuthResponse().id_token;
+  var auth = firebase.auth();
+
+  // Authenticate with Firebase using the Google ID token
+  var credential = firebase.auth.GoogleAuthProvider.credential(id_token);
+  auth.signInWithCredential(credential).catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    console.log("Error logging in with Google: ", errorCode, errorMessage);
+  });
+}
+
+function signOut() {
+  var auth = firebase.auth();
+  auth.signOut().then(function() {
+    console.log('User signed out.');
+  }).catch(function(error) {
+    console.log('Error signing out: ', error);
+  });
+}
+
     taskInput.addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
             addTask(taskInput.value);
